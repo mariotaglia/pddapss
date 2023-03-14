@@ -8,9 +8,6 @@ subroutine fkfun(x,f,ier)
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-!   xmNaalphatot = xmaddedNaCl + xmAalpha*MA ! Na+ = Na+_added + PolA * MA, total (including polymer assoc)
-
-
 use solver
 use system
 use const
@@ -32,15 +29,16 @@ real*8 diffNaalpha
 integer i
 
 xmNaalpha=exp(x(7))     ! xmNa en alfa
-xmBalpha =xmAalpha/ratioalpha 
+xmBalpha =exp(x(1))
 xmClalpha=exp(x(2))
 
 xmAbeta=exp(x(3))        !xmA en beta
-xmNabeta=exp(x(4))        !xmNa en beta
+xmNAbeta=exp(x(4))        !xmNa en beta
 xmBbeta=exp(x(5))
 xmClbeta=exp(x(6))
 
-print*,'xm',xmAalpha,xmnaalpha,xmBalpha,xmClalpha,xmAbeta,xmNabeta,xmBbeta,xmClbeta
+
+print*,'xm',xmAalpha,xmnaalpha,xmBalpha,xmClalpha,xmAbeta,xmNabeta,xmBbeta,xmClbeta, xmNaalphatot
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! FRACTIONS
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -163,8 +161,7 @@ elecneubeta=0.
 call electroneutrobeta(elecneubeta)
 neutralbeta=elecneubeta
 
-
-xmaddedNaCl = xmNaalpha - xmAalpha*MA
+diffNaalpha = (xmNaalpha+fA_asion_alpha*MA*xmAalpha)-xmNaalphatot
 
 Penality=abs(xmNabeta-xmNaalpha)/(xmNabeta*0.5+xmNaalpha*0.5)
 Penality=Penality+abs(xmAalpha-xmAbeta)/(xmAalpha*0.5+xmAbeta*0.5)
@@ -179,7 +176,7 @@ f(3)=-potA/Penality
 f(4)=-potB/Penality
 f(5)=-neutralalpha/Penality
 f(6)=-neutralbeta/Penality
-f(7)=exp(x(1))-xmBalpha
+f(7)=diffNaalpha
 
 iter = iter + 1
 norma = 0.0

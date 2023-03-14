@@ -39,13 +39,14 @@ x1g(6)=x1(6)
 x1(7) = log(xmNaalphainitial)      ! initial guess for xmNaalpha
 x1g(7) = x1(7)
 
-print*,'in:',ratioalpha,exp(x1(7)),exp(x1(1)),exp(x1(2)),exp(x1(3)), exp(x1(4)), exp(x1(5)),exp(x1(6))
+print*,'in:',xmAalpha,exp(x1(7)),exp(x1(1)),exp(x1(2)),exp(x1(3)), exp(x1(4)), exp(x1(5)),exp(x1(6)), xmNaalphatot
 
 !print*,'Na_alfa', 'n_tot_alfa', 'EO/Na alfa', 'Na_beta-Na_alpha', 'n_tot_beta', 'EO/Na beta'
 
 call call_kinsol(x1, x1g, ier)
 
-print*,'out:',ratioalpha,exp(x1(7)),exp(x1(1)),exp(x1(2)),exp(x1(3)), exp(x1(4)), exp(x1(5)),exp(x1(6))
+print*,'out:',xmAalpha,exp(x1(7)),exp(x1(1)),exp(x1(2)),exp(x1(3)), exp(x1(4)), exp(x1(5)),exp(x1(6)), xmNaalphatot
+write(8000,*)xmAalpha,exp(x1(7)),exp(x1(1)),exp(x1(2)),exp(x1(3)), exp(x1(4)), exp(x1(5)),exp(x1(6)), xmNaalphatot
 
 
 !checkresults=0.
@@ -61,7 +62,6 @@ print*,'out:',ratioalpha,exp(x1(7)),exp(x1(1)),exp(x1(2)),exp(x1(3)), exp(x1(4))
 !if ((norma.lt.criterio).and.( checkresults.gt.tolerancia)) then ! encuentra solucion
 if (norma.lt.criterio) then ! encuentra solucion
 
-write(8000,*)ratioalpha,exp(x1(7)),exp(x1(1)),exp(x1(2)),exp(x1(3)), exp(x1(4)), exp(x1(5)),exp(x1(6))
     print*,'Grid Point OK',yes
     if(justone.eq.1)call endall
 
@@ -93,8 +93,6 @@ write(8000,*)ratioalpha,exp(x1(7)),exp(x1(1)),exp(x1(2)),exp(x1(3)), exp(x1(4)),
       write(9997,*)yes,fB_aspol_beta, fA_aspol_beta, fB_asion_beta,fA_asion_beta
       write(9996,*)yes, xmNaalpha,xmNabeta, xmNaalpha-xmNabeta
       write(9995,*)yes, packconst, neutralconst
- 
-      arrayaddedNaCl(yes)=xmaddedNaCl/Na*1.d24
   
 
       arraymNa(1,yes)=xmNaalpha/Na*1.d24
