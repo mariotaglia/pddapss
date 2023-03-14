@@ -20,8 +20,9 @@ integer pKAp,pKBp,pkDp
 real*8 Mai, Maf, Mbi, Mbf
 integer Map, Mbp
 real*8 K0A, K0B,K0D,Ka,KB,Kd
-real*8 logxmAalphai, logxmAalphaf, logxmNaalphai,logxmNaalphaf
-integer npasosxmNaalpha, npasosxmAalpha 
+real*8 logratioalphai, logratioalphaf, logxmAalphai,logxmAalphaf
+real*8 xmaddedNaCl
+integer npasosxmAalpha, npasosratioalpha 
 real*8 cNaplus,cClmin
 real*8 xNaalpha,xmNaalpha,xmNabeta, xmNaalphatot
 real*8 n_totalpha, n_totbeta
@@ -30,7 +31,7 @@ real*8 xClalpha,xClbeta,xmClalpha,xmClbeta
 real*8 xsolventalpha,xsolventbeta
 real*8 xmsolventalpha,xmsolventbeta
 real*8 xAalpha,xAbeta,xBalpha,xBbeta
-real*8 xmAalpha,xmAbeta,xmBalpha,xmBbeta
+real*8 ratioalpha, xmAalpha,xmAbeta,xmBalpha,xmBbeta
 real*8 ratioBAalpha,ratioBAbeta 
 real*8 xmsalalpha,xmsalbeta
 integer npasosratioEO
@@ -47,6 +48,7 @@ real*8 packconst,neutralconst
 real*8 arraympoltot(2,100000)
 real*8 arraymcsal(2,100000)
 real*8 arraymNa(2,100000)
+real*8 arrayaddedNaCl(100000)
 real*8 arraymCl(2,100000)
 real*8 arraymA(2,100000)
 real*8 arraymB(2,100000)

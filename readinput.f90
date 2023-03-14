@@ -41,10 +41,10 @@ read(8, *), basura4! rsal
 read(8, *), rsal !
 
 read(8, *), basura5
-read(8, *), logxmAalphai, logxmAalphaf, npasosxmAalpha  !  scan total monomer density in molar
+read(8, *), logratioalphai, logratioalphaf, npasosratioalpha  !  scan total monomer density in molar
 
 read(8, *), basura6
-read(8, *), logxmNaalphai, logxmNaalphaf, npasosxmNaalpha   ! scan ratio monomer density
+read(8, *), logxmAalphai, logxmAalphaf, npasosxmAalpha   ! scan ratio monomer density
 !
 read(8, *), basura7
 read(8, *), pKDi, pKDf, pKDp     ! polymer-polymer attraction strenght in kBT
@@ -64,46 +64,5 @@ read(8,*), justone ! solves only one point
 read(8, *), basura12
 read(8, *), xmNaalphaini,xmNaalphainitial,xmBalphainitial, xmClalphainitial, &
             xmAbetainitial, xmNabetainitial,xmBbetainitial,xmClbetainitial ! read initial guess in the same order as output, ratio and xmtot in alpha are not solved for, so the result is stores in basura
-
-! SAVE INVERTED
-! read starts here, not that read is performed sequentially! 
-
-write(9,*), basura1
-write(9,*), Mai, Maf, Map    ! Ma  polA
-
-write(9, *), basura2
-write(9, *), Mbi, Mbf, Mbp  !   MEO  polEO
-
-write(9, *), basura3! vp
-write(9, *), vpolcero !
-
-write(9, *), basura4! rsal
-write(9, *), rsal !
-
-write(9, *), basura5
-write(9, *), log10(xmBalphainitial), logxmAalphaf, npasosxmAalpha  !  scan total monomer density in molar
-
-write(9, *), basura6
-write(9, *), logxmNaalphai, logxmNaalphaf, npasosxmNaalpha   ! scan ratio monomer density
-!
-write(9, *), basura7
-write(9, *), pKDi, pKDf, pKDp     ! polymer-polymer attraction strenght in kBT
-!
-write(9, *), basura8
-write(9, *), pKAi, pKAf, pKAp      ! polymer-polymer attraction strenght in kBT
-!
-write(9, *), basura9
-write(9, *), pkBi, pKBf, pKBp     ! polymer-polymer attraction strenght in kBT
-
-write(9, *), basura10
-write(9, *), chi  ! cutoff for porr sv interaction in lattice sites
-
-write(9,*), basura11
-write(9,*), justone ! solves only one point
-
-write(9, *), basura12
-write(9, *), xmBalphainitial, xmClalphainitial, xmNaalphaini,xmNaalphainitial &
-             ,xmBbetainitial,xmClbetainitial, xmAbetainitial, xmNabetainitial ! read initial guess in the same order as output, ratio and xmtot in alpha are not solved for, so the result is stores in basura
-close(9)
 
 end subroutine

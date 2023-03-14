@@ -9,8 +9,8 @@ use solver
 use results
 implicit none
 integer i, j, iii
-real*8 logxmNaalpha
 real*8 logxmAalpha
+real*8 logratioalpha
 integer k, kk, kkk
 integer kkkk, kkkkk
 
@@ -53,23 +53,23 @@ KD=10**(-pKD)
 KA=10**(-pKA)
 KB=10**(-pKB)
 
-K0A = (KA)*(vsol*Na/1.0d24) ! thermodynamic constants
-K0B = (KB)*(vsol*Na/1.0d24)
-K0D = (KD)*(vsol*Na/1.0d24)**2 !!!!!!!!!!!!!!!!!!!!!!!
+K0A = (KA)*(vsol/Na*1.0d24) ! thermodynamic constants
+K0B = (KB)*(vsol/Na*1.0d24)
+K0D = (KD)*(Na/1.0d24)
 
 
-do j=1, npasosxmAalpha  ! loop over xmtot alpha
+do j=1, npasosratioalpha  ! loop over xmtot alpha
 
-  logxmAalpha = (logxmAalphaf-logxmAalphai)*float(j-1)/float(npasosxmAalpha) + logxmAalphai
-  xmAalpha= 10**(logxmAalpha) !10**  !Segunda variable que fijamos  xmpoltotalalpha
+  logratioalpha = (logratioalphaf-logratioalphai)*float(j-1)/float(npasosratioalpha) + logratioalphai
+  ratioalpha= 10**(logratioalpha) !10**  !Segunda variable que fijamos  xmpoltotalalpha
 
 
- do i = 1, npasosxmNaalpha ! loop over ratio_alpha
+ do i = 1, npasosxmAalpha ! loop over ratio_alpha
 
-  logxmNaalpha = logxmNaalphai  + (logxmNaalphaf-logxmNaalphai) &
-  /float(npasosxmNaalpha)*float(i-1)  !Na
+  logxmAalpha = logxmAalphai  + (logxmAalphaf-logxmAalphai) &
+  /float(npasosxmAalpha)*float(i-1)  !Na
 
-  xmNaalphatot = 10**logxmNaalpha + xmAalpha*MA ! Na+ = Na+_added + PolA * MA, total (including polymer assoc)
+  xmAalpha = 10**(logxmAalpha)
 
       iter=0
       call solve
@@ -134,6 +134,12 @@ open (unit=500,file='polA_polB_beta.txt',status='replace')
 
 do iii=1,yes
    write (500,*) arraymA(2,iii), arraymB(2,iii)
+end do
+
+open (unit=600,file='polA_addedNa_alpha.txt',status='replace')
+
+do iii=1,yes
+   write (600,*) arraymA(1,iii), arrayaddedNaCl(iii)
 end do
 
 
