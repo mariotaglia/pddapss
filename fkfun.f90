@@ -164,7 +164,7 @@ call electroneutrobeta(elecneubeta)
 neutralbeta=elecneubeta
 
 
-xmaddedNaCl = xmNaalpha - xmAalpha*MA
+xmaddedNaCl = xmNaalpha + fA_asion_alpha*MA*xmAalpha - xmAalpha*MA
 
 Penality=abs(xmNabeta-xmNaalpha)/(xmNabeta*0.5+xmNaalpha*0.5)
 Penality=Penality+abs(xmAalpha-xmAbeta)/(xmAalpha*0.5+xmAbeta*0.5)
